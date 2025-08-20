@@ -1,0 +1,30 @@
+name: Daily eBay Check
+
+on:
+  schedule:
+    - cron: "0 12 * * *"   # Runs every day at 12:00 UTC
+  workflow_dispatch:        # Allows manual runs
+
+jobs:
+  check-ebay:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run script
+        env:
+          EBAY_API_KEY: ${{ secrets.EBAY_API_KEY }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python check_ebay.py
