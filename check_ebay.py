@@ -88,7 +88,7 @@ def search_monitors():
             if any(x in title or x in description for x in ["32", "34"]):
                 if "100hz" in title or "100 hz" in description or "100hz" in description:
                     if "speaker" in title or "speaker" in description:
-                        if price < 400
+                        if price < 400:
                             matches.append(f"[Monitor] {item['title'][0]} - ${price}\n{url}")
 
     return matches
