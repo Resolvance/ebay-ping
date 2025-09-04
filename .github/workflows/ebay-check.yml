@@ -1,5 +1,5 @@
 name: Daily eBay Check
-
+ 
 on:
   schedule:
     - cron: "0 12 * * *"   # Runs every day at 12:00 UTC
